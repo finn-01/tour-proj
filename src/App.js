@@ -36,9 +36,27 @@ const App = () => {
 		);
 	}
 
+	if (tours.length === 0) {
+		return (
+			<main>
+				<div className="title">
+					<h2>No tours left</h2>
+					<button type="button" className="btn" onClick={() => fetchTours()}>
+						Refresh
+					</button>
+				</div>
+			</main>
+		);
+	}
+
+	const removeTours = (id) => {
+		const newTours = tours.filter((tours) => tours.id !== id);
+		setTours(newTours);
+	};
+
 	return (
 		<main>
-			<Tours />
+			<Tours tours={tours} removeTours={removeTours} />
 		</main>
 	);
 };
